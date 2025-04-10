@@ -1,0 +1,138 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.network-background {
+  background-color: #0A1928;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100%25" height="100%25"%3E%3Cdefs%3E%3ClinearGradient id="a" x1="0" x2="0" y1="0" y2="1"%3E%3Cstop offset="0" stop-color="%23152A3B"%2F%3E%3Cstop offset="1" stop-color="%230A1928"%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpattern id="b" width="24" height="24" patternUnits="userSpaceOnUse"%3E%3Cpath fill="url(%23a)" d="M0 0h24v24H0z"%2F%3E%3C%2Fpattern%3E%3Crect width="100%25" height="100%25" fill="url(%23b)"%2F%3E%3C%2Fsvg%3E');
+  position: relative;
+  overflow: hidden;
+}
+
+.network-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100%25" height="100%25"%3E%3Cdefs%3E%3ClinearGradient id="a" x1="0" x2="0" y1="0" y2="1"%3E%3Cstop offset="0" stop-color="%230EB5D100"%2F%3E%3Cstop offset="1" stop-color="%230EB5D130"%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpattern id="b" width="24" height="24" patternUnits="userSpaceOnUse"%3E%3Cpath fill="url(%23a)" d="M0 0h24v24H0z"%2F%3E%3C%2Fpattern%3E%3Crect width="100%25" height="100%25" fill="url(%23b)"%2F%3E%3C%2Fsvg%3E');
+  opacity: 0.2;
+}
+
+.network-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#0EB5D1 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.2;
+}
+
+.network-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform: rotate(0deg);
+}
+
+.auth-container {
+  @apply min-h-screen flex flex-col sm:flex-row;
+}
+
+.auth-form {
+  @apply bg-white p-8 rounded-lg shadow-lg w-full max-w-md mx-auto;
+}
+
+.auth-input {
+  @apply w-full border border-gray-300 rounded-md p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-connectHub-primary;
+}
+
+.auth-button {
+  @apply w-full bg-connectHub-primary text-white py-2 px-4 rounded-md hover:bg-opacity-90 transition duration-200;
+}
+
+.auth-link {
+  @apply text-connectHub-primary hover:underline text-sm;
+}
+
+.navbar {
+  @apply bg-connectHub-primary text-white p-2 flex justify-between items-center;
+}
+
+.post-card {
+  @apply bg-white rounded-lg shadow-md p-4 mb-4;
+}
+
+.profile-container {
+  @apply bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
