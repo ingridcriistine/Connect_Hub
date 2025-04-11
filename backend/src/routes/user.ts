@@ -4,8 +4,7 @@ import UserController from '../controllers/UserController.ts';
 const router: Router = express.Router();
 
 export default router
-    .post("", DeliveryController.postDelivery)
-    .get("/:id", DeliveryController.getDelivery)
-    .put("/:id/status", DeliveryController.updateDeliveryStatus)
-
-    
+    .get("/", UserController.getUser)
+    .post("/register", UserController.postUser)
+    .put("/update", UserController.updateUser)
+    .delete("/delete", UserController.deleteUser)

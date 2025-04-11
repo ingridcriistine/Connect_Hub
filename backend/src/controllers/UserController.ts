@@ -2,18 +2,19 @@ import { Request, Response } from "express";
 import { prisma } from "../../prisma/client.ts";
 
 class UserController {
-    static async getUser(req: Request, res: Response){
+    static async getUser(req: Request, res: Response): Promise<any>{
         try {
             const { id } = req.body;
 
             const user = await prisma.user.findUnique({
-                where: { id }
+                where: {
+                    id: id
+                }
             });
 
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
             }
-
             res.status(200).json(user);
         } catch (error) {
             console.error(error);
@@ -66,6 +67,10 @@ class UserController {
                     id: id
                 }
             })
+        }
+        catch (error){
+            console.error("Erro ao deletar usuario:", error);
+            res.status(400).json({message: "Erro ao atualizar usuario", error});
         }
       }
     }
