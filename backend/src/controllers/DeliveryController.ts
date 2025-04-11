@@ -1,6 +1,4 @@
 import { Request, Response } from "express";
-import Delivery from "../models/Delivery.ts";
-
 
 class DeliveryController {
 
