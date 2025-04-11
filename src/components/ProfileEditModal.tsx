@@ -10,11 +10,10 @@ interface ProfileEditModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   initialData: {
-    name: string;
     username: string;
     description: string;
   };
-  onSave: (data: { name: string; username: string; description: string }) => void;
+  onSave: (data: { username: string; description: string }) => void;
 }
 
 const ProfileEditModal = ({ 
@@ -54,17 +53,6 @@ const ProfileEditModal = ({
           <DialogTitle className="text-center">Edit informations</DialogTitle>
         </DialogHeader>
         <div className="space-y-4 py-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full"
-            />
-          </div>
-          
           <div className="space-y-2">
             <Label htmlFor="username">Username</Label>
             <Input

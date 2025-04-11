@@ -73,7 +73,6 @@ const Profile: React.FC = () => {
           </div>
           
           <div className="text-center mt-4">
-            <h2 className="text-xl font-semibold">John Doe</h2>
             <p className="text-gray-500 text-sm">@johndoe</p>
           </div>
           
