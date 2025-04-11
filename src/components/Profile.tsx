@@ -1,7 +1,8 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Edit, Settings } from "lucide-react";
+import ProfileEditModal from "./ProfileEditModal";
 
 interface ProfileStat {
   value: number;
@@ -37,6 +38,17 @@ const Profile: React.FC = () => {
     });
   };
 
+  const [profileModalOpen, setProfileModalOpen] = useState(false);
+  const [userProfile, setUserProfile] = useState({
+    name: 'John Doe',
+    username: 'johndoe',
+    description: 'Software developer passionate about creating amazing user experiences.'
+  });
+
+  const handleSaveProfile = (data: typeof userProfile) => {
+    setUserProfile(data);
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-2xl mx-auto">
@@ -54,14 +66,13 @@ const Profile: React.FC = () => {
                 alt="Profile"
                 className="w-24 h-24 rounded-full border-4 border-white"
               />
-              <button className="absolute bottom-0 right-0 bg-connectHub-primary p-1 rounded-full text-white">
+              <button className="absolute bottom-0 right-0 bg-connectHub-primary p-1 rounded-full text-white" onClick={() => setProfileModalOpen(true)}>
                 <Edit size={16} />
               </button>
             </div>
           </div>
           
           <div className="text-center mt-4">
-            <h2 className="text-xl font-semibold">John Doe</h2>
             <p className="text-gray-500 text-sm">@johndoe</p>
           </div>
           
@@ -85,6 +96,13 @@ const Profile: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <ProfileEditModal 
+        open={profileModalOpen}
+        onOpenChange={setProfileModalOpen}
+        initialData={userProfile}
+        onSave={handleSaveProfile}
+      />
     </div>
   );
 };
