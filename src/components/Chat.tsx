@@ -157,17 +157,6 @@ const Chat: React.FC = () => {
       <div className="flex h-full bg-white rounded-lg shadow-md overflow-hidden">
         {/* Contacts sidebar */}
         <div className="w-1/3 border-r">
-          <div className="p-3 border-b">
-            <div className="relative">
-              <input 
-                type="text" 
-                placeholder="Search contacts..." 
-                className="w-full bg-gray-100 border-0 rounded-full py-2 px-4 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-connectHub-primary"
-              />
-              <Search className="absolute right-3 top-2 h-5 w-5 text-gray-500" />
-            </div>
-          </div>
-          
           <div className="overflow-y-auto h-full pb-16">
             {contacts.map((contact) => (
               <div 

@@ -40,11 +40,7 @@ const Profile: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-2xl mx-auto">
-        <div className="bg-connectHub-primary h-24 relative">
-          <button className="absolute top-2 right-2 bg-white/20 p-1.5 rounded-full">
-            <Settings size={18} className="text-white" />
-          </button>
-        </div>
+        <div className="bg-connectHub-primary h-24 relative"></div>
         
         <div className="px-6 pb-6">
           <div className="flex justify-center -mt-12">
