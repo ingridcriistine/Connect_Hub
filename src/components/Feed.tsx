@@ -1,7 +1,7 @@
-
 import React, { useState } from "react";
 import { Heart, MessageCircle, Share, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import PostCard from "./PostCard";
 
 interface Post {
   id: number;
@@ -40,7 +40,8 @@ const dummyPosts: Post[] = [
       avatar: "https://randomuser.me/api/portraits/women/44.jpg",
     },
     content: "Hello everyone! Sharing this special moment ✨",
-    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNvY2lhbCUyMG5ldHdvcmt8ZW58MHx8MHx8fDA%3D",
+    image:
+      "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNvY2lhbCUyMG5ldHdvcmt8ZW58MHx8MHx8fDA%3D",
     likes: 42,
     comments: 7,
     createdAt: "5h ago",
@@ -64,6 +65,7 @@ const dummyPosts: Post[] = [
 const Feed: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>(dummyPosts);
   const [newPostContent, setNewPostContent] = useState("");
+  const [expandedPosts, setExpandedPosts] = useState<number[]>([]);
   const { toast } = useToast();
 
   const handleLike = (postId: number) => {
@@ -81,9 +83,15 @@ const Feed: React.FC = () => {
     );
   };
 
+  const toggleComments = (postId: number) => {
+    setExpandedPosts((prev) =>
+      prev.includes(postId) ? prev.filter((id) => id !== postId) : [...prev, postId]
+    );
+  };
+
   const handleSubmitPost = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!newPostContent.trim()) {
       toast({
         title: "Error",
@@ -92,7 +100,7 @@ const Feed: React.FC = () => {
       });
       return;
     }
-    
+
     const newPost: Post = {
       id: Date.now(),
       user: {
@@ -106,10 +114,10 @@ const Feed: React.FC = () => {
       createdAt: "Just now",
       liked: false,
     };
-    
+
     setPosts([newPost, ...posts]);
     setNewPostContent("");
-    
+
     toast({
       title: "Success",
       description: "Your post has been published!",
@@ -149,12 +157,14 @@ const Feed: React.FC = () => {
             />
             <div>
               <h3 className="font-semibold">{post.user.name}</h3>
-              <p className="text-gray-500 text-xs">{post.user.username} • {post.createdAt}</p>
+              <p className="text-gray-500 text-xs">
+                {post.user.username} • {post.createdAt}
+              </p>
             </div>
           </div>
-          
+
           <p className="mb-3">{post.content}</p>
-          
+
           {post.image && (
             <img
               src={post.image}
@@ -162,7 +172,7 @@ const Feed: React.FC = () => {
               className="w-full h-auto rounded-lg mb-3"
             />
           )}
-          
+
           <div className="flex items-center justify-between text-gray-500 border-t pt-3">
             <button
               onClick={() => handleLike(post.id)}
@@ -170,17 +180,28 @@ const Feed: React.FC = () => {
                 post.liked ? "text-red-500" : ""
               }`}
             >
-              <Heart size={18} fill={post.liked ? "currentColor" : "none"} /> {post.likes}
+              <Heart size={18} fill={post.liked ? "currentColor" : "none"} />
+              {post.likes}
             </button>
-            
-            <button className="flex items-center gap-1">
-              <MessageCircle size={18} /> {post.comments}
+
+            <button
+              onClick={() => toggleComments(post.id)}
+              className="flex items-center gap-1"
+            >
+              <MessageCircle size={18} />
+              {post.comments}
             </button>
-            
+
             <button className="flex items-center gap-1">
               <Share size={18} />
             </button>
           </div>
+
+          {expandedPosts.includes(post.id) && (
+            <div className="mt-4 border-t pt-3 text-sm text-gray-700">
+              <p>💬 Comentários do post (aqui você pode implementar uma lista ou formulário futuramente).</p>
+            </div>
+          )}
         </div>
       ))}
     </div>

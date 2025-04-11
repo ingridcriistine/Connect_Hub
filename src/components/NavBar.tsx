@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, MessageSquare, Bell, User, Search } from "lucide-react";
+import { Home, MessageSquare, Bell, User, Search, LogOut } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 import NotificationItem from "./NotificationItem";
 
@@ -92,6 +92,10 @@ const NavBar: React.FC = () => {
             <Link to="/profile" className="flex flex-col items-center p-1 hover:bg-white/10 rounded transition">
               <User size={20} />
               <span className="text-xs hidden md:inline">Profile</span>
+            </Link>
+            <Link to="/login" className="flex flex-col items-center p-1 hover:bg-white/10 rounded transition">
+              <LogOut size={20} />
+              <span className="text-xs hidden md:inline">Logout</span>
             </Link>
           </div>
         </div>
